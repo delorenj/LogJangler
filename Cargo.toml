@@ -1,0 +1,69 @@
+[workspace]
+members = [
+    "crates/logjangler-core",
+    "crates/logjangler-service",
+    "crates/logjangler-cli",
+    "crates/logjangler-plugins",
+    "crates/logjangler-consumers",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Jarad DeLorenzo <jarad@delorenzo.dev>"]
+license = "MIT"
+repository = "https://github.com/delorenj/LogJangler"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+tokio-util = { version = "0.7", features = ["codec"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# DateTime
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID
+uuid = { version = "1.10", features = ["v4", "serde"] }
+
+# WebSocket
+tokio-tungstenite = "0.23"
+futures-util = "0.3"
+
+# RabbitMQ
+lapin = "2.5"
+deadpool-lapin = "0.12"
+
+# Redis
+redis = { version = "0.26", features = ["tokio-comp", "connection-manager"] }
+
+# Meilisearch
+meilisearch-sdk = "0.27"
+
+# CLI
+clap = { version = "4.5", features = ["derive", "env"] }
+colored = "2.1"
+
+# Utilities
+bytes = "1.7"
+dashmap = "6.1"
+regex = "1.10"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

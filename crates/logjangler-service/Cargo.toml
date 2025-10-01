@@ -1,0 +1,10 @@
+[package]
+name = "logjangler-service"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+logjangler-core = { path = "../logjangler-core" }
